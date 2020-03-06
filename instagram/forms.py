@@ -3,7 +3,15 @@ from .models import Post,Comment,Profile
 
 
 
-class NewPostForm(forms.ModelForm)
+class CommentForm(forms.ModelForm):
     class Meta:
-        model=Comment
+        model = Comment
         exclude=['username','post']
+
+class NewPostForm(forms.Model):
+    class Meta:
+        model = Post
+        exclude = ['upload_by', 'pub_date', 'likes', 'location']
+
+class ProfileForm(forms.Modelform):
+ 
