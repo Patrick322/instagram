@@ -42,3 +42,20 @@ class post(models.Model):
     upload_by = models.Foreignkey(profile)
     likes = models.IntegerField(default=0)
     post_date = models.DateTimeField(auto_now_add=True)
+
+def __str__(self):
+    return self.caption
+
+def save_photo(self, user):
+    self.save()
+
+@classmethod
+def all_photos(cls):
+    all_photos = cls.objects.all()
+    return all_photos
+
+@classmethod
+def user_photos(user, username):
+    photos = cls.objects.filter(upload_by__username=username)
+    return photos    
+
