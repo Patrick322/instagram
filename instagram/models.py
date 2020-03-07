@@ -64,5 +64,12 @@ def filter_by_caption(cls,search_term):
     return cls.objects.filter(caption__fullname=search_term)
 
 def delete_photos(self, user):
-    self.delete()    
+    self.delete()
+
+class Comment(models.Model):
+    comment_content = models.CharField(max_length=100)
+    username = models.ForeignKey(user,on_delete=models.CASCADE)
+    post = models.ForeignKey(post,on_delete=models.CASCADE)
+
+            
 
