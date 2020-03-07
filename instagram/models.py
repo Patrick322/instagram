@@ -29,4 +29,16 @@ class Profile(models.Model):
     gender = models.Charfield(max_length=20,)
 
 def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()    
+    instance.profile.save()
+
+@class method
+def search_profile(cls,search_term)
+    profiles = cls.objects.filter(Q(username__username=search_term) | Q(fullname__fullname+search_term)) 
+    return profiles
+
+class post(models.Model):
+    photo_pic = models.ImageField(upload_to = 'photos/')
+    caption = models.CharField(max_length=2000)
+    upload_by = models.Foreignkey(profile)
+    likes = models.IntegerField(default=0)
+    post_date = models.DateTimeField(auto_now_add=True)
