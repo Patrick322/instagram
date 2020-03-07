@@ -57,5 +57,12 @@ def all_photos(cls):
 @classmethod
 def user_photos(user, username):
     photos = cls.objects.filter(upload_by__username=username)
-    return photos    
+    return photos
+
+@classmethod
+def filter_by_caption(cls,search_term):
+    return cls.objects.filter(caption__fullname=search_term)
+
+def delete_photos(self, user):
+    self.delete()    
 
