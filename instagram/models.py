@@ -72,5 +72,15 @@ class Comment(models.Model):
     post = models.ForeignKey(post,on_delete=models.CASCADE)
 
 def save_commment(self):
-    self.save()            
+    self.save()
+
+class Like(models.Model):
+    models.ForeignKey(user,on_delete=models.CASCADE)
+    control = models.CharField(max_length=50,null=True)
+
+def __str__(self):
+    return self.control
+
+def save_like(self):
+    self.save()
 
