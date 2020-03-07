@@ -14,3 +14,19 @@ def __str__(self):
 
 def save_location(self):
     self(save)
+
+@classmethod
+def delete_location(cls,location):
+    cls.object.filter(location).delete()
+
+class Profile(models.Model):
+    profile_pic = models.ImageField(upload_to='photos/',null=True)
+    full_name = models.Charfield(max_length=255,null=True)
+    username = models.CharField(user,on delete=model.CASCADE,related_name='profile')
+    bio = models.TextField(max_length=50)
+    email = models.EmailField(null=True)
+    phonenumber = models.IntegerField(null=True)
+    gender = models.Charfield(max_length=20,)
+
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()    
