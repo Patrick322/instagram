@@ -157,7 +157,22 @@ def new_post(request):
         return render(request, 'new_post.html', {"form":"form"})      
 
 @login_required(login_url='accounts/login')
-def edit_profile(request)     
+def edit_profile(request):
+    current_user = request.user
+    user.edit = Profile.objects.get(username__id=current_user.id)
+    if request.method =='POST':
+        form = ProfileForm(request.POST,request.FILES.instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            print('success')
+
+    else:
+        from=ProfileForm(instance=request.user.profile)
+        print('error')
+
+
+    return render(request, 'edit_profile.htm',locals())            
+
 
 
 
