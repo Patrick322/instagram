@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 from django.db import models
 from django.contrib.auth.models import User
-from django.db
+# from django.db
 
 # Create your models here
 class Location(models.Model):
@@ -71,7 +71,7 @@ class Comment(models.Model):
     username = models.ForeignKey(user,on_delete=models.CASCADE)
     post = models.ForeignKey(post,on_delete=models.CASCADE)
 
-def save_commment(self):
+def save_comment(self):
     self.save()
 
 class Like(models.Model):
