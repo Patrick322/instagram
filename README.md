@@ -29,9 +29,9 @@ As a user is required to:
  * To run the tests
              $ python3.6 mnage.py test            
 ## Contacts
-Email:patrickbuong@gmail.com
-Github:Patrick322
-Tel:+254797239875
+ * Email:patrickbuong@gmail.com
+ * Github:Patrick322
+ * Tel:+254797239875
 
 ## Licence
 
