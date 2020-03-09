@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^accounts/',include('registration.backends.simple.urls')),
     url(r'^login/$',views.login,{"next_Page": '/'}),
     url(r'^logout/$', views.logout, {"next_page": '/'}),
+    url(r'^', include('instagram.urls')),
 ]

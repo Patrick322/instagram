@@ -8,6 +8,7 @@ from django.http import HttpResponse, Http404,HttpResponseRedirect
 # from .email import send_welcome_email
 from django.contrib.auth.decorators import login_required
 # from .forms import NewPostForm,ProfileForm,CommentForm,LikeForm,FollowForm
+from .models import *
 
 # Create your views here.
 @login_required(login_url='/accounts/login')
@@ -81,18 +82,17 @@ def search_results(request):
         return render(request,'search.html',{"message":message,"user":searched_users})
 
     else:
-        messages="You have not searche for any term."
+        messages="You have not searched for any term."
         return render(request,'search.html',{"message":message})
 
 
 @login_required(login_url='/accounts/login')
 def view(request):
-    posts = post.objects.all()
-    profiles = Profile.objects.all[:5]
+    
+    profiles = Profile.objects.all
 
 
-    return render(request,"view.html",{"posts":posts,"profiles":profiles,})
-
+    return render(request,'view.html', {"profiles":profiles})
 
 @login_required(login_url='/accounts/login/')
 def profile(request,id):

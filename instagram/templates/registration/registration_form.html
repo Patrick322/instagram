@@ -7,11 +7,7 @@
         <!-- Empty div -->
         <div class="col-md-2">
         </div>
-        <!-- <div class="col-md-4 phone-section">   
-            <div class="image" style="padding-top: 80px;">
-                <img class="screen-image" src="https://bit.ly/2vksgGZ" alt="" width="100%" height="100%">
-            </div>
-        </div> -->
+        
         <div class="col-md-5 form-section" style="padding-top: 50px;">
             {% if form.errors %}
             <p>Password or Username is incorrect</p>
@@ -27,17 +23,17 @@
 
                             {% csrf_token %}
                             {% bootstrap_form form %}
-                            <div class="form-group">
-                                <input type="submit" class="btn btn-primary login-button" value="Sign Up">
-                            </div>
-                            <input type="hidden" name="next" value="/">
+                            <!-- <div class="form-group">
+                                <h3 class="text-center" href="/accounts/login/?next=/">Sign Up</h3>
+                            </div> -->
+                            <input type="submit" name="next" value="SignUp">
                         </form>
                     </div>
                 </div>
             </div>
             <div class="card card-default">
                 <div class="card-body text-center">
-                    <p>Already have an account? <a href="/accounts/login/"> Sign In</a></p>
+                    <p>Already have an account? <a href="/accounts/login/?next=/"> Sign In</a></p>
                 </div>
             </div>
 
@@ -45,7 +41,7 @@
                 <div class='col-md-12'>
                     <h5>Get the App</h5>
                 </div>
-                <div class="col-md-6 col-lg-6 app-store">
+                <!-- <div class="col-md-6 col-lg-6 app-store">
                     <a href="https://itunes.apple.com/app/instagram/id389801252?mt=8&vt=lo">
                         <img class="Rt8TI" alt="Available on the App Store"
                             src="https://www.instagram.com/static/images/appstore-install-badges/badge_ios_english-en.png/180ae7a0bcf7.png"
@@ -59,7 +55,7 @@
                             src="https://www.instagram.com/static/images/appstore-install-badges/badge_android_english-en.png/e9cd846dc748.png"
                             height=40>
                     </a>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

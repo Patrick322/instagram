@@ -23,11 +23,8 @@ def delete_location(cls,location):
 class Profile(models.Model):
     profile_pic = models.ImageField(upload_to='photos/',null=True)
     full_name = models.CharField(max_length=255,null=True)
-    username = models.CharField(User,max_length=50, null=True)
     bio = models.TextField(max_length=50)
     email = models.EmailField(null=True)
-    phonenumber = models.IntegerField(null=True)
-    gender = models.CharField(max_length=20,)
 
 def save_user_profile(sender, instance):
     instance.profile.save()
