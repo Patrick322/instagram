@@ -24,3 +24,7 @@ As a user is required to:
             * Install virtual environment using $ python3 -m virtual
             *install all dependencies from requirements.txt file then run $ python3 pip freeze > requirements.txt
             * Make migrations by running $ python manage.py makemigrations instagram && then Migrate by running python3 manage.py migrate
+
+ ## Testing Application
+ * To run the tests
+             $ python3.6 mnage.py test            
