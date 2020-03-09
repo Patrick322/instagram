@@ -19,7 +19,7 @@ As a user is required to:
 
 
  ## Running Application
-* install django 1==11
+            * install django 1==11
 
-* Install virtual environment using
-        $ python3 -m virtual
+            * Install virtual environment using $ python3 -m virtual
+            
