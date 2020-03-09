@@ -1,10 +1,17 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse, Http404
 import datetime as dt
+from django.db import models
+# from .models import Article
+from .forms import CommentForm, NewPostForm, LikeForm, ProfileForm
+from django.http import HttpResponse, Http404,HttpResponseRedirect
+# from .email import send_welcome_email
+from django.contrib.auth.decorators import login_required
+# from .forms import NewPostForm,ProfileForm,CommentForm,LikeForm,FollowForm
 
 # Create your views here.
 @login_required(login_url='/accounts/login')
-def timeline(request):
+def post(request):
     posts= Post.objects.all().order_by("-id")
     profiles=Profile.objects.all()
     current_user = request.current_user
@@ -31,9 +38,9 @@ def timeline(request):
             like.post = post
             print("like saved")
 
-        return redirect("timeline")
+        return redirect("post")
     else:
-        likeform = LikeForm():
+        likeform = LikeForm()
 
     if request.method == 'Post' and 'unlikez' in request.POST:
         post_id = request.POST.get("unlikez")
@@ -42,7 +49,8 @@ def timeline(request):
         like_delete = Like.objects.get(control=control)
         like_delete.delete()
 
-        if request.method == 'POST'
+        if request.method == 'POST':
+
             form = CommentForm(request.POST)
             if form.is_valid():
                 post_id = int(request.POST.get("idpost"))
@@ -65,42 +73,40 @@ def timeline(request):
 
 
 @login_required(login_url='/account/login')
-def search_results(request)
-if 'search' in request.GET and request.GET["search"]:
-    search_term = request.GET.get("search")
-    searched_users = user.search_user(search_term)
-    messages = f"{search}"
+def search_results(request):
+    if 'search' in request.GET and request.GET["search"]:
+        search_term = request.GET.get("search")
+        searched_users = user.search_user(search_term)
+        # messages = f"{search_term}"
+        return render(request,'search.html',{"message":message,"user":searched_users})
 
-
-    return render(request,)
-
-else:
-    messages="You have not searche for any term."
-    return render(request, )
+    else:
+        messages="You have not searche for any term."
+        return render(request,'search.html',{"message":message})
 
 
 @login_required(login_url='/accounts/login')
-def explore(request):
+def view(request):
     posts = Posts.objects.all()
     profiles = Profile.objects.all[:5]
 
 
-    return render(request)
+    return render(request,"view.html",{"posts":posts,"profiles":profiles,})
 
 
 @login_required(login_url='/accounts/login/')
-def profile(request,id)
-user_object = request.user
-current_user = Profile.objects.get(username__id=request.user.id)
-user = profile.objects.get(username__id=id)
-posts = Post.objects.filter(upload_by = user)
-follows = Folow.objects.all()
+def profile(request,id):
+    user_object = request.user
+    current_user = Profile.objects.get(username__id=request.user.id)
+    user = profile.objects.get(username__id=id)
+    posts = Post.objects.filter(upload_by = user)
+    follows = Folow.objects.all()
 
-if request.method == 'POST' and 'follower' in request.POST:
-    print("follow saved")
-    followed_user_id = request.POST.get("follower")
-    followform = FollowForm(request.POST)
-    if followform.is_valid():
+    if request.method == 'POST' and 'follower' in request.POST:
+        print("follow saved")
+        followed_user_id = request.POST.get("follower")
+        followform = FollowForm(request.POST)
+    if  followform.is_valid():
         followed_user_id = int(request.POST.get("follower"))
         current_user = Profile.objects.get(username__id=request.user.id)
         follow.username = request.user
@@ -112,6 +118,7 @@ if request.method == 'POST' and 'follower' in request.POST:
         print("follow saved")
 
         return redirect("profile",username.id)
+
     else:
         followform = FollowForm()    
 
@@ -131,7 +138,7 @@ if request.method == 'POST' and 'follower' in request.POST:
         follow = follow.split("-")
         if follow[0] == str(user.username.id):
             following+=1
-        if follow[-1] == str(user.username_id)
+        if follow[-1] == str(user.username_id):
             follower+=1
 
     return render(request, "profile.html")
@@ -161,13 +168,13 @@ def edit_profile(request):
     current_user = request.user
     user.edit = Profile.objects.get(username__id=current_user.id)
     if request.method =='POST':
-        form = ProfileForm(request.POST,request.FILES.instance=request.user.profile)
+        form = ProfileForm(request.POST)
         if form.is_valid():
             form.save()
             print('success')
 
     else:
-        from=ProfileForm(instance=request.user.profile)
+        form=ProfileForm(instance=request.user.profile)
         print('error')
 
 
