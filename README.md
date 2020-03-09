@@ -22,4 +22,5 @@ As a user is required to:
             * install django 1==11
 
             * Install virtual environment using $ python3 -m virtual
-            
+            *install all dependencies from requirements.txt file then run $ python3 pip freeze > requirements.txt
+            * Make migrations by running $ python manage.py makemigrations instagram && then Migrate by running python3 manage.py migrate
