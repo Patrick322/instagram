@@ -12,6 +12,6 @@ This duplicate instagram application where one can login and view,like,comment a
 ## Features
 As a user is required to:
 
-    * Sign in to the application.
-    * Login to the application      after sighning to.
-    * 
+    1. Sign in to the application.
+    2. Login to the application      after sighning to.
+    3. search for different users
