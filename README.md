@@ -15,3 +15,11 @@ As a user is required to:
     1. Sign in to the application.
     2. Login to the application      after sighning to.
     3. search for different users
+    4.See your profile and the pictures posted  by other people
+
+
+ ## Running Application
+* install django 1==11
+
+* Install virtual environment using
+        $ python3 -m virtual
