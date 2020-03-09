@@ -28,3 +28,11 @@ As a user is required to:
  ## Testing Application
  * To run the tests
              $ python3.6 mnage.py test            
+## Contacts
+Email:patrickbuong@gmail.com
+Github:Patrick322
+Tel:+254797239875
+
+## Licence
+
+licenced under the[MIT licence](LICENCED)
