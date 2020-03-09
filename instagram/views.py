@@ -87,7 +87,7 @@ def search_results(request):
 
 @login_required(login_url='/accounts/login')
 def view(request):
-    posts = Posts.objects.all()
+    posts = post.objects.all()
     profiles = Profile.objects.all[:5]
 
 
