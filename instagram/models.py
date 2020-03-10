@@ -30,7 +30,7 @@ def save_user_profile(sender, instance):
     instance.profile.save()
 
 @classmethod
-def search_profile(cls,search_term):
+def search_profile(cls,search_teArticlerm):
     profiles = cls.objects.filter(Q(username__username=search_term) | Q(fullname__fullname+search_term)) 
     return profiles
 
@@ -39,7 +39,7 @@ class post(models.Model):
     caption = models.CharField(max_length=2000)
     upload_by = models.ForeignKey(Profile,on_delete=models.CASCADE)
     likes = models.IntegerField(default=0)
-    post_date = models.DateTimeField(auto_now_add=True)
+    # post_date = models.DateTimeField(auto_now_add=True)
 
 def __str__(self):
     return self.caption

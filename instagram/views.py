@@ -2,20 +2,18 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse, Http404
 import datetime as dt
 from django.db import models
-# from .models import Article
 from .forms import CommentForm, NewPostForm, LikeForm, ProfileForm
 from django.http import HttpResponse, Http404,HttpResponseRedirect
-# from .email import send_welcome_email
 from django.contrib.auth.decorators import login_required
-# from .forms import NewPostForm,ProfileForm,CommentForm,LikeForm,FollowForm
 from .models import *
+from .models import post as Post
 
 # Create your views here.
 @login_required(login_url='/accounts/login')
 def post(request):
     posts= Post.objects.all().order_by("-id")
     profiles=Profile.objects.all()
-    current_user = request.current_user
+    current_user = request.user
 
     comments=Comment.objects.all()
     likes = Like.objects.all()
@@ -43,7 +41,7 @@ def post(request):
     else:
         likeform = LikeForm()
 
-    if request.method == 'Post' and 'unlikez' in request.POST:
+    if request.method == 'POST' and 'unlikez' in request.POST:
         post_id = request.POST.get("unlikez")
         post = Post.objects.get(pk=post_id)
         control = str(request.user.id)+"-"+str(post.id)
@@ -60,7 +58,7 @@ def post(request):
                 comment.username = request.user
                 comment.post = post
                 comment.save()
-            return redirect('timeline')
+            return redirect('post')
 
         else:
             form = CommentForm()
@@ -70,7 +68,8 @@ def post(request):
         Likezz = Like.objects.values_list('control', flat=True)
         likezz = list(likezz) 
 
-        return render(request,)    
+        return render(request,'view.html') 
+    return render(request, 'view.html',{'posts': posts})
 
 
 @login_required(login_url='/account/login')
@@ -157,7 +156,7 @@ def new_post(request):
             post = form.save(commit=False)
             post.upload_by = current_user
             post.save()
-        return redirect('timeline')
+        return redirect('post')
 
     else:
         form = NewPostForm()
