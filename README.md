@@ -35,7 +35,7 @@ As a user is required to:
 
  ## Code Beat
 
- 
+ [![codebeat badge](https://codebeat.co/badges/d799e827-b9b5-4a48-abc4-14e45a6e1e10)](https://codebeat.co/projects/github-com-patrick322-instagram-master)
 
 ## Licence
 
