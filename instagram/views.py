@@ -21,8 +21,7 @@ def post(request):
     for post in posts:
         num_likes=0
         for like in likes:
-            if post.id == like.post.id:
-                num_like +=1
+            num_likes +=1
         posts.likes = num_likes
         post.save()
 
@@ -69,7 +68,7 @@ def post(request):
         likezz = list(likezz) 
 
         return render(request,'view.html') 
-    return render(request, 'view.html',{'posts': posts})
+    return render(request, 'view.html',{'posts': posts, 'commentform': CommentForm})
 
 
 @login_required(login_url='/account/login')
@@ -87,8 +86,12 @@ def search_results(request):
 
 @login_required(login_url='/accounts/login')
 def view(request):
-    
-    profiles = Profile.objects.all
+    current_user=request.user
+    if current_user.is_authenticated:
+        profiles = Profile.objects.all
+
+    else:
+        return redirect(profile)
 
 
     return render(request,'view.html', {"profiles":profiles})
@@ -96,49 +99,49 @@ def view(request):
 @login_required(login_url='/accounts/login/')
 def profile(request,id):
     user_object = request.user
-    current_user = Profile.objects.get(username__id=request.user.id)
-    user = profile.objects.get(username__id=id)
+    current_user = Profile.objects.filter(pk=request.user.id).first(    )
+    user = Profile.objects.filter(pk=id).first()
     posts = Post.objects.filter(upload_by = user)
-    follows = Folow.objects.all()
+    # follows = Follow.objects.all()
 
-    if request.method == 'POST' and 'follower' in request.POST:
-        print("follow saved")
-        followed_user_id = request.POST.get("follower")
-        followform = FollowForm(request.POST)
-    if  followform.is_valid():
-        followed_user_id = int(request.POST.get("follower"))
-        current_user = Profile.objects.get(username__id=request.user.id)
-        follow.username = request.user
-        followed_user = user.objects.get(pk=followed_user_id)
-        print(followed_user)
-        follow.followed = followed_user
-        follow.follow_id = str(follow.username.id)+"-"+str(follow.followed.id)
-        follow.save()
-        print("follow saved")
+    # if request.method == 'POST' and 'follower' in request.POST:
+    #     print("follow saved")
+    #     followed_user_id = request.POST.get("follower")
+    #     followform = FollowForm(request.POST)
+    # if  followform.is_valid():
+    #     followed_user_id = int(request.POST.get("follower"))
+    #     current_user = Profile.objects.get(username__id=request.user.id)
+    #     follow.username = request.user
+    #     followed_user = user.objects.get(pk=followed_user_id)
+    #     print(followed_user)
+    #     follow.followed = followed_user
+    #     follow.follow_id = str(follow.username.id)+"-"+str(follow.followed.id)
+    #     follow.save()
+    #     print("follow saved")
 
-        return redirect("profile",username.id)
+    #     return redirect("profile",username.id)
 
-    else:
-        followform = FollowForm()    
+    # else:
+    #     followform = FollowForm()    
 
-    if request.method =='POST' and 'unfollower' in request.POST:
-        followed_user_id = request.POST.get("unfollower")
-        followed_user = user.objects.get(pk=followed_user_id)
-        follow_delete = Follow.objects.get(follow_id=follow_id)
-        follow_delete.delete()
+    # if request.method =='POST' and 'unfollower' in request.POST:
+    #     followed_user_id = request.POST.get("unfollower")
+    #     followed_user = user.objects.get(pk=followed_user_id)
+    #     follow_delete = Follow.objects.get(follow_id=follow_id)
+    #     follow_delete.delete()
 
 
-    follows = Follow.objects.all()
-    followzz = Follow.objects.values_list('follow_id',flat=True)
-    followzz = list(followzz)
-    follower = 0
-    following = 0
-    for follow in followzz:
-        follow = follow.split("-")
-        if follow[0] == str(user.username.id):
-            following+=1
-        if follow[-1] == str(user.username_id):
-            follower+=1
+    # follows = Follow.objects.all()
+    # followzz = Follow.objects.values_list('follow_id',flat=True)
+    # followzz = list(followzz)
+    # follower = 0
+    # following = 0
+    # for follow in followzz:
+    #     follow = follow.split("-")
+    #     if follow[0] == str(user.username.id):
+    #         following+=1
+    #     if follow[-1] == str(user.username_id):
+    #         follower+=1
 
     return render(request, "profile.html")
 

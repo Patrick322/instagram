@@ -32,14 +32,14 @@
             {% with follow=user.id|stringformat:"i" %}
             {% with tempfollow=temp|add:follow %}
             {% if tempfollow in followz %}
-            <form action="{%url 'profile' user.username.id%}" method="post" enctype="multipart/form-data">
+            <form  method="post" enctype="multipart/form-data">
                 {%csrf_token%}
                 <input type="hidden" name="unfollower" style="position:relative;left:10px" value='{{user.id}}'>
                 <button class="btn btn-danger" type="submit"><img
                         src="https://bit.ly/31JV9IM" width="24">UnFollow</button>
             </form>
             {% else %}
-            <form action="{%url 'profile' user.username.id%}" method="post" enctype="multipart/form-data">
+            <form method="post" enctype="multipart/form-data">
                 {%csrf_token%}
                 <input type="hidden" name="follower" style="position:relative;left:10px" value='{{user.id}}'>
                 <button class="btn btn-success" type="submit"><img
