@@ -1,3 +1,6 @@
 from django.test import TestCase
+from .models import post,Location,Comment,Like
 
-# Create your tests here.
+class postTestcase(TestCase):
+    def setUP(self)
+    self 

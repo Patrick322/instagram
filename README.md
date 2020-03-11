@@ -33,6 +33,10 @@ As a user is required to:
  * Github:Patrick322
  * Tel:+254797239875
 
+## Database Diagram
+![](media/photos/untitled.png)
+
+
  ## Code Beat
 
  [![codebeat badge](https://codebeat.co/badges/d799e827-b9b5-4a48-abc4-14e45a6e1e10)](https://codebeat.co/projects/github-com-patrick322-instagram-master)
@@ -40,3 +44,5 @@ As a user is required to:
 ## Licence
 
 licenced under the[MIT licence](LICENCED)
+
+

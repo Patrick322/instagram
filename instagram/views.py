@@ -102,47 +102,7 @@ def profile(request,id):
     current_user = Profile.objects.filter(pk=request.user.id).first(    )
     user = Profile.objects.filter(pk=id).first()
     posts = Post.objects.filter(upload_by = user)
-    # follows = Follow.objects.all()
-
-    # if request.method == 'POST' and 'follower' in request.POST:
-    #     print("follow saved")
-    #     followed_user_id = request.POST.get("follower")
-    #     followform = FollowForm(request.POST)
-    # if  followform.is_valid():
-    #     followed_user_id = int(request.POST.get("follower"))
-    #     current_user = Profile.objects.get(username__id=request.user.id)
-    #     follow.username = request.user
-    #     followed_user = user.objects.get(pk=followed_user_id)
-    #     print(followed_user)
-    #     follow.followed = followed_user
-    #     follow.follow_id = str(follow.username.id)+"-"+str(follow.followed.id)
-    #     follow.save()
-    #     print("follow saved")
-
-    #     return redirect("profile",username.id)
-
-    # else:
-    #     followform = FollowForm()    
-
-    # if request.method =='POST' and 'unfollower' in request.POST:
-    #     followed_user_id = request.POST.get("unfollower")
-    #     followed_user = user.objects.get(pk=followed_user_id)
-    #     follow_delete = Follow.objects.get(follow_id=follow_id)
-    #     follow_delete.delete()
-
-
-    # follows = Follow.objects.all()
-    # followzz = Follow.objects.values_list('follow_id',flat=True)
-    # followzz = list(followzz)
-    # follower = 0
-    # following = 0
-    # for follow in followzz:
-    #     follow = follow.split("-")
-    #     if follow[0] == str(user.username.id):
-    #         following+=1
-    #     if follow[-1] == str(user.username_id):
-    #         follower+=1
-
+    
     return render(request, "profile.html")
 
 
