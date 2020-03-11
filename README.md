@@ -34,7 +34,7 @@ As a user is required to:
  * Tel:+254797239875
 
 ## Database Diagram
-![](media/photos/untitled.png)
+![](media/photos/Untitled.png)
 
 
  ## Code Beat
